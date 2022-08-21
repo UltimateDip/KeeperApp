@@ -27,6 +27,13 @@ function App() {
         });
     }
 
+    function handleDelete(id) {
+        // console.log("this was triggered");
+        setNotes(prev => {
+            return prev.filter(note => note.key !== id)
+        });
+    }
+
     return (
         <div>
             <div>
@@ -37,8 +44,10 @@ function App() {
                 {currNotes.map((note) => {
                     return (<Note
                         key={note.key}
+                        id={note.key}
                         title={note.title}
                         content={note.content}
+                        deleteAction={handleDelete}
                     />
                     );
                 })}
